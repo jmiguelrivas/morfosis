@@ -180,25 +180,48 @@ Future<void> _convertSingleFile(FileItem fileItem) async {
   final input = fileItem.path;
   final name = p.basenameWithoutExtension(input);
 
+  // If user chooses "Keep Original" output format,
+  // use the input file extension instead.
+  final outputFormat = settingsNotifier.value.outputFormat == 'Keep Original'
+      ? p.extension(input).replaceFirst('.', '')
+      : settingsNotifier.value.outputFormat;
+
   final outputFileName =
-      '${settingsNotifier.value.outputPrefix}$name${settingsNotifier.value.outputSuffix}.${settingsNotifier.value.outputFormat}';
+      '${settingsNotifier.value.outputPrefix}$name${settingsNotifier.value.outputSuffix}.$outputFormat';
   final output = p.join(downloadsDir.path, outputFileName);
 
-  // 2️⃣ Build codec options
-  final videoCodecOption = settingsNotifier.value.videoCodec != 'Keep Original'
-      ? ['-c:v', settingsNotifier.value.videoCodec]
-      : [];
-  final audioCodecOption = settingsNotifier.value.audioCodec != 'Keep Original'
-      ? ['-c:a', settingsNotifier.value.audioCodec]
-      : [];
-
-  // 3️⃣ Build FFmpeg command as a single string
+  // Build FFmpeg command
   final commandList = [
     if (settingsNotifier.value.overwrite) '-y',
     '-i',
     '"$input"',
-    ...videoCodecOption,
-    ...audioCodecOption,
+
+    // Always remove metadata when enabled
+    if (settingsNotifier.value.clearExif) ...['-map_metadata', '-1'],
+
+    // If output format is keep original => copy streams
+    if (settingsNotifier.value.outputFormat == 'Keep Original') ...[
+      '-c',
+      'copy',
+    ] else ...[
+      // If user selected codecs, use them; otherwise copy streams
+      if (settingsNotifier.value.videoCodec != 'Keep Original') ...[
+        '-c:v',
+        settingsNotifier.value.videoCodec,
+      ] else ...[
+        '-c:v',
+        'copy',
+      ],
+
+      if (settingsNotifier.value.audioCodec != 'Keep Original') ...[
+        '-c:a',
+        settingsNotifier.value.audioCodec,
+      ] else ...[
+        '-c:a',
+        'copy',
+      ],
+    ],
+
     '"$output"',
   ];
 

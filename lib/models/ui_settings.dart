@@ -5,14 +5,16 @@ class UiSettings {
   String outputPrefix;
   String outputSuffix;
   bool overwrite;
+  bool clearExif;
 
   UiSettings({
-    this.outputFormat = 'mp3',
+    this.outputFormat = 'Keep Original',
     this.videoCodec = 'Keep Original',
     this.audioCodec = 'Keep Original',
     this.outputPrefix = '',
     this.outputSuffix = '',
     this.overwrite = true,
+    this.clearExif = true,
   });
 
   UiSettings copyWith({
@@ -23,6 +25,7 @@ class UiSettings {
     String? outputSuffix,
     String? command,
     bool? overwrite,
+    bool? clearExif,
   }) {
     return UiSettings(
       outputFormat: outputFormat ?? this.outputFormat,
@@ -31,6 +34,7 @@ class UiSettings {
       outputPrefix: outputPrefix ?? this.outputPrefix,
       outputSuffix: outputSuffix ?? this.outputSuffix,
       overwrite: overwrite ?? this.overwrite,
+      clearExif: clearExif ?? this.clearExif,
     );
   }
 }

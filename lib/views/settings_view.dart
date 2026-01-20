@@ -95,6 +95,15 @@ class SettingsView extends StatelessWidget {
                   updater: (s, val) => s.copyWith(overwrite: val),
                 ),
 
+                CustomCheckboxOption(
+                  option: FormatOption(
+                    label: 'Clear Exif Data',
+                    description: 'Strips metadata',
+                  ),
+                  selector: (s) => s.clearExif,
+                  updater: (s, val) => s.copyWith(clearExif: val),
+                ),
+
                 Text(
                   'Format',
                   style: TextStyle(color: colors.foreground, fontSize: 18),
@@ -108,10 +117,7 @@ class SettingsView extends StatelessWidget {
                   child: ValueListenableBuilder<UiSettings>(
                     valueListenable: settingsNotifier,
                     builder: (context, settings, _) {
-                      final availableFormats = [
-                        ...audioFormats,
-                        ...videoFormats,
-                      ];
+                      final availableFormats = [...Formats.all];
 
                       return Column(
                         children: availableFormats.map((formats) {
@@ -140,9 +146,7 @@ class SettingsView extends StatelessWidget {
                     valueListenable: settingsNotifier,
                     builder: (context, settings, _) {
                       final selectedFormat = settings.outputFormat;
-                      final availableCodecs = getVideoCodecsForFormat(
-                        selectedFormat,
-                      );
+                      final availableCodecs = getVideoCodecs(selectedFormat);
 
                       return Column(
                         children: availableCodecs.map((codecOption) {
@@ -171,9 +175,7 @@ class SettingsView extends StatelessWidget {
                     valueListenable: settingsNotifier,
                     builder: (context, settings, _) {
                       final selectedFormat = settings.outputFormat;
-                      final availableCodecs = getAudioCodecsForFormat(
-                        selectedFormat,
-                      );
+                      final availableCodecs = getAudioCodecs(selectedFormat);
 
                       return Column(
                         children: availableCodecs.map((codecOption) {

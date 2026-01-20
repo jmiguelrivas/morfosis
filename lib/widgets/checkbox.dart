@@ -23,7 +23,7 @@ class CustomCheckboxOption extends StatelessWidget {
     return ValueListenableBuilder<UiSettings>(
       valueListenable: settingsNotifier,
       builder: (context, settings, _) {
-        final checked = selector(settings);
+        final checked = selector(settings) == true;
         return CheckboxListTile(
           title: Column(
             crossAxisAlignment: CrossAxisAlignment.start,

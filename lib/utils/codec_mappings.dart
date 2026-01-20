@@ -1,110 +1,194 @@
 import '../models/format_option.dart';
 
-const videoFormats = [
-  FormatOption(label: 'mp4', description: 'Most compatible video format'),
-  FormatOption(label: 'avi', description: 'Legacy format, widely supported'),
-  FormatOption(label: 'mov', description: 'Apple QuickTime format'),
-  FormatOption(label: 'webm', description: 'Web-friendly format'),
-  FormatOption(label: 'mkv', description: 'Advanced container, supports multiple codecs'),
-  FormatOption(label: 'flv', description: 'Streaming format'),
-  FormatOption(label: '3gp', description: 'Mobile-friendly, legacy phones'),
-  FormatOption(label: '3g2', description: '3GPP2 format, CDMA networks'),
-];
+/// ============================================================
+/// Formats (containers)
+/// ============================================================
+class Formats {
+  static const keepOriginal = FormatOption(
+    label: 'Keep Original',
+    description: 'Do not change container or streams',
+  );
 
-const audioFormats = [
-  FormatOption(label: 'mp3', description: 'Most compatible audio format'),
-  FormatOption(label: 'm4a', description: 'Apple-friendly audio format'),
-  FormatOption(label: 'wav', description: 'Uncompressed audio'),
-  FormatOption(label: 'flac', description: 'Lossless audio format'),
-  FormatOption(label: 'ogg', description: 'Open source audio format'),
-];
+  static const mp4 = FormatOption(
+    label: 'mp4',
+    description: 'Most compatible video format',
+  );
+  static const avi = FormatOption(
+    label: 'avi',
+    description: 'Legacy format, widely supported',
+  );
+  static const mov = FormatOption(
+    label: 'mov',
+    description: 'Apple QuickTime format',
+  );
+  static const webm = FormatOption(
+    label: 'webm',
+    description: 'Web-friendly format',
+  );
+  static const mkv = FormatOption(
+    label: 'mkv',
+    description: 'Advanced container',
+  );
+  static const flv = FormatOption(
+    label: 'flv',
+    description: 'Streaming format',
+  );
+  static const g3p = FormatOption(
+    label: '3gp',
+    description: 'Mobile-friendly legacy format',
+  );
+  static const g3p2 = FormatOption(label: '3g2', description: '3GPP2 format');
 
-const videoCodecsArray = [
-  FormatOption(label: 'Keep Original', description: 'Do not change the codec'),
-  FormatOption(label: 'libx264', description: 'H.264 video, widely supported'),
-  FormatOption(label: 'libx265', description: 'H.265/HEVC, smaller files, modern devices'),
-  FormatOption(label: 'mpeg4', description: 'MPEG-4 Part 2, used in 3GP/3G2'),
-  FormatOption(label: 'h263', description: 'H.263 codec, used in older 3GP/3G2'),
-];
+  static const all = [keepOriginal, mp4, avi, mov, webm, mkv, flv, g3p, g3p2];
+}
 
+/// ============================================================
+/// Video codecs
+/// ============================================================
 class VideoCodecs {
-  static const keepOriginal = FormatOption(label: 'Keep Original', description: 'Do not change the codec');
-  static const libx264 = FormatOption(label: 'libx264', description: 'H.264 video, widely supported');
-  static const libx265 = FormatOption(label: 'libx265', description: 'H.265/HEVC, smaller files, modern devices');
-  static const mpeg4 = FormatOption(label: 'mpeg4', description: 'MPEG-4 Part 2, used in 3GP/3G2');
-  static const h263 = FormatOption(label: 'h263', description: 'H.263 codec, used in older 3GP/3G2');
+  static const keep = FormatOption(
+    label: 'Keep Original',
+    description: 'Do not re-encode video',
+  );
+  static const h264 = FormatOption(
+    label: 'libx264',
+    description: 'H.264, widely supported',
+  );
+  static const h265 = FormatOption(
+    label: 'libx265',
+    description: 'H.265 / HEVC',
+  );
+  static const mpeg4 = FormatOption(
+    label: 'mpeg4',
+    description: 'MPEG-4 Part 2',
+  );
+  static const h263 = FormatOption(
+    label: 'h263',
+    description: 'H.263 (legacy 3GP)',
+  );
 
-  static const all = [
-    keepOriginal,
-    libx264,
-    libx265,
-    mpeg4,
-    h263,
-  ];
+  static const all = [keep, h264, h265, mpeg4, h263];
 }
 
-const audioCodecsArray = [
-  FormatOption(label: 'Keep Original', description: 'Do not change the codec'),
-  FormatOption(label: 'aac', description: 'Modern, widely supported audio codec'),
-  FormatOption(label: 'ac3', description: 'Dolby Digital audio'),
-  FormatOption(label: 'libmp3lame', description: 'MP3 audio codec'),
-  FormatOption(label: 'flac', description: 'Lossless audio codec'),
-  FormatOption(label: 'libopencore_amrnb', description: 'AMR Narrowband (3GP legacy)'),
-  FormatOption(label: 'amr_wb', description: 'AMR Wideband (3GP legacy)'),
-  FormatOption(label: 'pcm_s16le', description: 'WAV / uncompressed audio'),
-];
-
+/// ============================================================
+/// Audio codecs
+/// ============================================================
 class AudioCodecs {
-  static const keepOriginal = FormatOption(label: 'Keep Original', description: 'Do not change the codec');
-  static const aac = FormatOption(label: 'aac', description: 'Modern, widely supported audio codec');
-  static const ac3 = FormatOption(label: 'ac3', description: 'Dolby Digital audio');
-  static const libmp3lame = FormatOption(label: 'libmp3lame', description: 'MP3 audio codec');
-  static const flac = FormatOption(label: 'flac', description: 'Lossless audio codec');
-  static const libopencore_amrnb = FormatOption(label: 'libopencore_amrnb', description: 'AMR Narrowband (3GP legacy)');
-  static const amr_wb = FormatOption(label: 'amr_wb', description: 'AMR Wideband (3GP legacy)');
-  static const pcm_s16le = FormatOption(label: 'pcm_s16le', description: 'WAV / uncompressed audio');
+  static const keep = FormatOption(
+    label: 'Keep Original',
+    description: 'Do not re-encode audio',
+  );
+  static const aac = FormatOption(label: 'aac', description: 'AAC audio');
+  static const mp3 = FormatOption(
+    label: 'libmp3lame',
+    description: 'MP3 audio',
+  );
+  static const ac3 = FormatOption(label: 'ac3', description: 'Dolby Digital');
+  static const flac = FormatOption(label: 'flac', description: 'Lossless FLAC');
+  static const amr = FormatOption(
+    label: 'libopencore_amrnb',
+    description: 'AMR Narrowband',
+  );
+  static const amrWb = FormatOption(
+    label: 'amr_wb',
+    description: 'AMR Wideband',
+  );
+  static const pcm = FormatOption(
+    label: 'pcm_s16le',
+    description: 'Uncompressed PCM',
+  );
 
-  static const all = [
-    keepOriginal,
-    aac,
-    ac3,
-    libmp3lame,
-    flac,
-    libopencore_amrnb,
-    amr_wb,
-    pcm_s16le,
-  ];
+  static const all = [keep, aac, mp3, ac3, flac, amr, amrWb, pcm];
 }
 
-final Map<String, List<FormatOption>> formatToVideoCodecs = {
-  'mp4': [VideoCodecs.keepOriginal, VideoCodecs.libx264, VideoCodecs.libx265],
-  'avi': [VideoCodecs.keepOriginal, VideoCodecs.libx264],
-  'mov': [VideoCodecs.keepOriginal, VideoCodecs.libx264, VideoCodecs.libx265],
-  'webm': [VideoCodecs.keepOriginal, VideoCodecs.libx264],
-  'mkv': [VideoCodecs.keepOriginal, VideoCodecs.libx264, VideoCodecs.libx265],
-  'flv': [VideoCodecs.keepOriginal, VideoCodecs.libx264],
-  '3gp': [VideoCodecs.keepOriginal, VideoCodecs.mpeg4, VideoCodecs.h263],
-  '3g2': [VideoCodecs.keepOriginal, VideoCodecs.mpeg4, VideoCodecs.h263],
+/// ============================================================
+/// Compatibility tables
+/// ============================================================
+final Map<String, List<FormatOption>> videoCodecsByFormat = {
+  Formats.keepOriginal.label: [VideoCodecs.keep],
+
+  Formats.mp4.label: [VideoCodecs.keep, VideoCodecs.h264, VideoCodecs.h265],
+  Formats.avi.label: [VideoCodecs.keep, VideoCodecs.h264],
+  Formats.mov.label: [VideoCodecs.keep, VideoCodecs.h264, VideoCodecs.h265],
+  Formats.webm.label: [VideoCodecs.keep, VideoCodecs.h264],
+  Formats.mkv.label: [VideoCodecs.keep, VideoCodecs.h264, VideoCodecs.h265],
+  Formats.flv.label: [VideoCodecs.keep, VideoCodecs.h264],
+  Formats.g3p.label: [VideoCodecs.keep, VideoCodecs.mpeg4, VideoCodecs.h263],
+  Formats.g3p2.label: [VideoCodecs.keep, VideoCodecs.mpeg4, VideoCodecs.h263],
 };
 
-final Map<String, List<FormatOption>> formatToAudioCodecs = {
-  'mp3': [AudioCodecs.keepOriginal, AudioCodecs.libmp3lame],
-  'm4a': [AudioCodecs.keepOriginal, AudioCodecs.aac],
-  'wav': [AudioCodecs.keepOriginal, AudioCodecs.pcm_s16le],
-  'flac': [AudioCodecs.keepOriginal, AudioCodecs.flac],
-  'ogg': [AudioCodecs.keepOriginal, AudioCodecs.aac],
-  'mp4': [AudioCodecs.keepOriginal, AudioCodecs.aac, AudioCodecs.libmp3lame, AudioCodecs.ac3],
-  'avi': [AudioCodecs.keepOriginal, AudioCodecs.libmp3lame, AudioCodecs.ac3, AudioCodecs.pcm_s16le],
-  'mov': [AudioCodecs.keepOriginal, AudioCodecs.aac, AudioCodecs.libmp3lame, AudioCodecs.pcm_s16le],
-  'webm': [AudioCodecs.keepOriginal, AudioCodecs.aac],
-  'mkv': [AudioCodecs.keepOriginal, AudioCodecs.aac, AudioCodecs.ac3, AudioCodecs.libmp3lame, AudioCodecs.flac],
-  'flv': [AudioCodecs.keepOriginal, AudioCodecs.aac, AudioCodecs.libmp3lame],
-  '3gp': [AudioCodecs.keepOriginal, AudioCodecs.aac, AudioCodecs.libopencore_amrnb, AudioCodecs.amr_wb],
-  '3g2': [AudioCodecs.keepOriginal, AudioCodecs.aac, AudioCodecs.libopencore_amrnb, AudioCodecs.amr_wb],
+final Map<String, List<FormatOption>> audioCodecsByFormat = {
+  Formats.keepOriginal.label: [AudioCodecs.keep],
+
+  // Audio-only outputs
+  'mp3': [AudioCodecs.keep, AudioCodecs.mp3],
+  'm4a': [AudioCodecs.keep, AudioCodecs.aac],
+  'wav': [AudioCodecs.keep, AudioCodecs.pcm],
+  'flac': [AudioCodecs.keep, AudioCodecs.flac],
+  'ogg': [AudioCodecs.keep, AudioCodecs.aac],
+
+  // Video containers
+  Formats.mp4.label: [
+    AudioCodecs.keep,
+    AudioCodecs.aac,
+    AudioCodecs.mp3,
+    AudioCodecs.ac3,
+  ],
+  Formats.avi.label: [
+    AudioCodecs.keep,
+    AudioCodecs.mp3,
+    AudioCodecs.ac3,
+    AudioCodecs.pcm,
+  ],
+  Formats.mov.label: [
+    AudioCodecs.keep,
+    AudioCodecs.aac,
+    AudioCodecs.mp3,
+    AudioCodecs.pcm,
+  ],
+  Formats.webm.label: [AudioCodecs.keep, AudioCodecs.aac],
+  Formats.mkv.label: [
+    AudioCodecs.keep,
+    AudioCodecs.aac,
+    AudioCodecs.ac3,
+    AudioCodecs.mp3,
+    AudioCodecs.flac,
+  ],
+  Formats.flv.label: [AudioCodecs.keep, AudioCodecs.aac, AudioCodecs.mp3],
+  Formats.g3p.label: [
+    AudioCodecs.keep,
+    AudioCodecs.aac,
+    AudioCodecs.amr,
+    AudioCodecs.amrWb,
+  ],
+  Formats.g3p2.label: [
+    AudioCodecs.keep,
+    AudioCodecs.aac,
+    AudioCodecs.amr,
+    AudioCodecs.amrWb,
+  ],
 };
 
-List<FormatOption> getVideoCodecsForFormat(String format) =>
-    formatToVideoCodecs[format] ?? [VideoCodecs.keepOriginal];
+/// ============================================================
+/// Public helpers
+/// ============================================================
+List<FormatOption> getVideoCodecs(String formatLabel) {
+  return videoCodecsByFormat[formatLabel] ?? const [VideoCodecs.keep];
+}
 
-List<FormatOption> getAudioCodecsForFormat(String format) =>
-    formatToAudioCodecs[format] ?? [AudioCodecs.keepOriginal];
+List<FormatOption> getAudioCodecs(String formatLabel) {
+  return audioCodecsByFormat[formatLabel] ?? const [AudioCodecs.keep];
+}
+
+/// ============================================================
+/// Metadata-only detection
+/// ============================================================
+bool isMetadataOnlyRun({
+  required String format,
+  required String videoCodec,
+  required String audioCodec,
+}) {
+  return format == Formats.keepOriginal.label &&
+      videoCodec == VideoCodecs.keep.label &&
+      audioCodec == AudioCodecs.keep.label;
+}
