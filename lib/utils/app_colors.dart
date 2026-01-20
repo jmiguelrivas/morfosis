@@ -53,7 +53,7 @@ class AppColors {
         // saturateAmount: 0.1,
         // hueShift: -40,
       ),
-      background: const Color.fromARGB(255, 20, 20, 23), // your bgColor
+      background: const Color.fromARGB(255, 20, 20, 23),
       backgroundSecondary: const Color.fromARGB(255, 25, 25, 28),
       backgroundTertiary: ColorUtils.transform(
         scheme.tertiary,
@@ -61,9 +61,9 @@ class AppColors {
         darkenAmount: 0.55,
         // hueShift: -40,
       ),
-      foreground: const Color(0xffcccccc), // your foregroundColor
-      bar: const Color(0xFF14191D), // your barColor
-      disabled: const Color(0xFF444444), // your disabledColor
+      foreground: const Color(0xffcccccc),
+      bar: const Color(0xFF14191D),
+      disabled: const Color(0xFF444444),
 
       input: ColorUtils.transform(
         scheme.primary,

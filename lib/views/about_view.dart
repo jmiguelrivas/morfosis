@@ -24,7 +24,7 @@ class AboutView extends StatelessWidget {
             padding: const EdgeInsets.all(16),
             child: Column(
               spacing: 48,
-              crossAxisAlignment: CrossAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
                 Row(
                   spacing: 8,
@@ -41,7 +41,7 @@ class AboutView extends StatelessWidget {
                 ),
 
                 Column(
-                  spacing: 16,
+                  spacing: 8,
                   children: [
                     Image.asset('img/morfosis_brand.png', height: 120),
                     Column(
@@ -73,7 +73,10 @@ class AboutView extends StatelessWidget {
                           label: 'No Trackers',
                           icon: Icons.location_on,
                         ),
-                        CustomBadge(label: 'Works Offline', icon: Icons.wifi),
+                        CustomBadge(
+                          label: 'Works Offline',
+                          icon: Icons.signal_wifi_off,
+                        ),
                         CustomBadge(
                           label: 'License: GPLv3',
                           icon: Icons.shield,

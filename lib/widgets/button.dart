@@ -52,9 +52,7 @@ class CustomBtnBase extends StatelessWidget {
           backgroundColor: isPrimary ? colors.primary : Colors.transparent,
           foregroundColor: isPrimary ? colors.background : colors.primary,
           padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(25),
-          ),
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
         ),
         onPressed: action,
         icon: glyph,

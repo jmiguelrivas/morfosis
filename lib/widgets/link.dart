@@ -33,9 +33,7 @@ class CustomLink extends StatelessWidget {
           backgroundColor: colors.secondary,
           foregroundColor: colors.background,
           padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(25),
-          ),
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
         ),
         icon: Icon(icon, size: 22, color: colors.background),
         label: Text(label),
